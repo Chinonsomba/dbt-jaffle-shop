@@ -23,7 +23,7 @@ sources:
             description: "Customer last name"
 
       - name: orders
-        description: "Raw orders table"
+        description: "{{ doc('order_status') }}"
 
         columns:
 
