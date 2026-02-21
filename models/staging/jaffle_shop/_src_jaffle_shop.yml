@@ -1,27 +1,59 @@
 sources:
   - name: jaffle_shop
+    description: "Raw source system containing jaffle shop operational data"
     database: raw
     schema: jaffle_shop
+
     tables:
+
       - name: customers
-        description: "Raw jaffle_shop customers details"
+        description: "Raw customers table"
+
         columns:
-          - name: id
-            description: "Primary id of the customers"
-          - name: first_name
-            description: "first name of customers"
-          - name: last_name
-            description: "last name of jaffle_shop customers"
+          - name: ID
+            description: "Primary key"
+            tests:
+              - not_null
+              - unique
+
+          - name: FIRST_NAME
+            description: "Customer first name"
+
+          - name: LAST_NAME
+            description: "Customer last name"
+
       - name: orders
-        description: "Raw jaffle_shop customer orders"
+        description: "Raw orders table"
+
         columns:
-          - name: order_id
-            description: "Primary id of the orders"
-          - name: customer_id
-            description: "primary id of the customer that made an order"
-          - name: order_date
-            description: "The date the order was made"
-          - name: status
-            description: "status of the customer order"
-     
-      
+
+          - name: ID
+            description: "Primary key"
+            tests:
+              - not_null
+              - unique
+
+          - name: USER_ID
+            description: "Foreign key to customers table"
+            tests:
+              - not_null
+              - relationships:
+                  to: source('jaffle_shop','customers')
+                  field: ID
+
+          - name: ORDER_DATE
+            description: "Date order was placed"
+
+          - name: STATUS
+            description: "Order status"
+            tests:
+              - accepted_values:
+                  values:
+                    - placed
+                    - shipped
+                    - completed
+                    - return_pending
+                    - returned
+
+          - name: _ETL_LOADED_AT
+            description: "ETL load timestamp"
