@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: raw
+    schema: stripe
+    tables:
+      - name: payment
+        description: "Raw Stripe payment data"
+        columns:
+          - name: id
+            description: "Primary key of the payment"
+          - name: order_id
+            description: "Associated order ID"
+          - name: amount
+            description: "Amount in cents"
