@@ -1,0 +1,27 @@
+sources:
+  - name: jaffle_shop
+    database: raw
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        description: "Raw jaffle_shop customers details"
+        columns:
+          - name: id
+            description: "Primary id of the customers"
+          - name: first_name
+            description: "first name of customers"
+          - name: last_name
+            description: "last name of jaffle_shop customers"
+      - name: orders
+        description: "Raw jaffle_shop customer orders"
+        columns:
+          - name: order_id
+            description: "Primary id of the orders"
+          - name: customer_id
+            description: "primary id of the customer that made an order"
+          - name: order_date
+            description: "The date the order was made"
+          - name: status
+            description: "status of the customer order"
+     
+      
